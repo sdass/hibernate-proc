@@ -1,0 +1,50 @@
+
+use soba32;
+SELECT * from customer;
+select * from acl_class;
+select * from loginuser;
+select * from authorities
+# select current_timestamp
+select 1;
+
+use hibnatedb;
+create table teams (
+id int(6) not null auto_increment,
+name varchar(20) not null,
+rating int(6) not null,
+primary key(id)
+);
+
+insert into teams (id, name, rating) values(5, 'Yankee', 12);
+insert into teams (id, name, rating) values(3, 'Indian', 18);
+
+use hibnatedb;
+select * from Teams;
+
+//--------------------
+drop procedure getName;
+CREATE PROCEDURE getName(IN namein VARCHAR(10))
+ /* SELECT name */
+ SELECT id FROM teams WHERE name = namein;
+ 
+ call hibnatedb.getName('Indian');
+ //-------------------------
+ drop procedure getId;
+CREATE PROCEDURE getId(IN namein VARCHAR(10), IN rank int)
+ 
+ SELECT id FROM teams WHERE name = namein and rating = rank;
+ 
+ call getId('Indian', 77);  /* 18 */
+ //--------------------------
+ 
+ CREATE TABLE stock (
+  STOCK_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  STOCK_CODE VARCHAR(10) NOT NULL,
+  STOCK_NAME VARCHAR(20) NOT NULL,
+  PRIMARY KEY (STOCK_ID),
+  UNIQUE KEY UNI_STOCK_NAME (STOCK_NAME),
+  UNIQUE KEY UNI_STOCK_ID (STOCK_CODE) );
+  
+  insert into stock (stock_code, stock_name) values('GE', 122);
+  
+  select * from stock
