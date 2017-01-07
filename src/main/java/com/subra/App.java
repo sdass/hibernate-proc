@@ -39,9 +39,33 @@ public class App
     	//justname(session);
     	//records(session);
     	//storeprocSql(session);
-    	storeprocSqlParam(session);
+    	//storeprocSqlParam(session);
     	storeprocSql2Parampassed(session);
+    	//callprocHbmCfg(session);
+    	callprocHbmCfg2param(session);
     }
+    
+    public static void callprocHbmCfg(Session session){
+    	System.out.println("callprocHbmCfg-=-=-=-");
+    	Query query = session.getNamedQuery("callprocNamexml");
+    	query.setParameter("pname", "Indian");
+    	  List<Integer> ids = query.list();
+      	for(Integer id : ids){
+      		System.out.println(id);
+      	}
+    	
+    }
+    
+    public static void callprocHbmCfg2param(Session session){
+    	System.out.println("callprocHbmCfg2param-=-=-=-");
+    	Query query = session.getNamedQuery("callprocNamexml2param");
+    	query.setParameter("pname", "Indian").setParameter("prank", 18); //77
+    	  List<Integer> ids = query.list();
+      	for(Integer id : ids){
+      		System.out.println(id);
+      	}
+    	
+    }    
     
     public static void storeprocSql2Parampassed(Session session){
     	System.out.println("storeprocSql2Parampassed-=-=-=-");

@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.subra.Teams" table="teams" catalog="hibnatedb">
+    <!-- <class name="com.subra.Teams" table="teams" catalog="hibnatedb">
         <id name="Id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
@@ -15,6 +15,16 @@
             <column name="rating"  not-null="true"  />
         </property>
     </class>
+     -->
+    <sql-query name="callprocNamexml">
+   <!--  <return class="java.lang.String"/> -->
+    <![CDATA[ call hibnatedb.getName(:pname) ]]>
+    </sql-query>
     
+    <sql-query name="callprocNamexml2param">
+   <!--  <return class="java.lang.String"/> -->
+    <![CDATA[ call hibnatedb.getId(:pname, :prank) ]]>
+    </sql-query>
+   
     
 </hibernate-mapping>
