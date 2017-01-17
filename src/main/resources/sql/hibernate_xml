@@ -36,6 +36,17 @@ CREATE PROCEDURE getId(IN namein VARCHAR(10), IN rank int)
  
  call getId('Indian', 77);  /* 18 */
  //--------------------------
+ drop procedure if exists getNameRatingById;
+ create procedure getNameRatingById (In idin int) 
+  select name, rating from teams where id > idin; /* = */
+  
+  call getNameRatingById(3);
+ 
+ drop procedure getNameRatingByName;
+ create procedure getNameRatingByName (In namein varchar(10)) 
+  select name, rating from teams where name = namein; /* = */
+ 
+ call getNameRatingByName('Yankee');
  
  CREATE TABLE stock (
   STOCK_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,

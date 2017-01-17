@@ -16,7 +16,18 @@
         </property>
     </class>
      -->
-    <sql-query name="callprocNamexml">
+    
+     <class name="com.subra.Proc2Return" catalog="hibnatedb"  >
+     <id name="id" type="java.lang.Integer" >
+     <column name="id" />
+            <generator class="identity" />
+     </id>
+     <property name="ranking" type="java.lang.Integer" ></property>
+     <property name="name" type="java.lang.String" ></property>
+     
+     </class>
+  
+   <sql-query name="callprocNamexml">
    <!--  <return class="java.lang.String"/> -->
     <![CDATA[ call hibnatedb.getName(:pname) ]]>
     </sql-query>
@@ -25,6 +36,16 @@
    <!--  <return class="java.lang.String"/> -->
     <![CDATA[ call hibnatedb.getId(:pname, :prank) ]]>
     </sql-query>
-   
+
+    <sql-query name="callprocIdaParam2return" callable="true" >
+    <return alias="tworeturns" class="com.subra.Proc2Return"></return>
+    <![CDATA[ call hibnatedb.getNameRatingById(:pid) ]]>
+    </sql-query>   
+    
+    <sql-query name="callprocIdaParam2returnNNN" callable="true" >
+    <return alias="tworeturns" class="com.subra.Proc2Return"></return>
+    <![CDATA[ call hibnatedb.getNameRatingByName(:pname) ]]>
+    </sql-query>  
+    
     
 </hibernate-mapping>

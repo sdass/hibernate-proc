@@ -2,8 +2,11 @@ package com.subra;
 
 import java.util.List;
 
+import javax.persistence.ParameterMode;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.procedure.ProcedureCall;
 
 
 public class App 
@@ -40,10 +43,52 @@ public class App
     	//records(session);
     	//storeprocSql(session);
     	//storeprocSqlParam(session);
-    	storeprocSql2Parampassed(session);
+    	//storeprocSql2Parampassed(session);
     	//callprocHbmCfg(session);
-    	callprocHbmCfg2param(session);
+    	//callprocHbmCfg2param(session);
+    	//callHbmCfg1param2Return(session);
+    	callHbmCfg1param2ReturnII(session);
     }
+    
+    public static void callHbmCfg1param2Return(Session session){
+    	System.out.println("callHbmCfg1param2Return-=-=-=-");
+    	Query query = session.getNamedQuery("callprocIdaParam2return");
+    	//session.get
+    	//Query query = session.getNamedQuery(queryName)
+    	query.setParameter("pid", 3); //3 5 6
+    	  List<Object> records = query.list();
+      	for(Object obj : records){
+      		System.out.println(obj);
+      	}
+    	
+    }
+
+    public static void callHbmCfg1param2ReturnII(Session session){
+    	System.out.println("callHbmCfg1param2ReturnII-=-=-=-");
+    	//Query query = session.getNamedQuery("findTwoMappedReturns");
+    	//Query query = session.getNamedQuery("callTwoMappedRetsHibernate");
+    	//Query query = session.getNamedQuery("callprocIdaParam2return");
+    	Query query = session.getNamedQuery("callprocIdaParam2returnNNN");
+    	
+    	
+    	//ProcedureCall procedureCall = session.getNamedProcedureCall("findTwoMappedReturns");
+    	//procedureCall.registerParameter("id", Integer.class, ParameterMode.IN );
+    	//query.setParameter("pid", 3);
+    	query.setParameter("pname", "Yankee");
+    	//procedureCall.reg
+    	//query.setParameter("pid", "3"); //3 5 6;
+    	 /* List<Proc2Return> records = (List<Proc2Return>) query.list();
+      	for(Proc2Return obj : records){
+      		System.out.println(obj);
+      	}
+      	*/
+    	
+    	 List<Object> records =  query.list();
+       	for(Object obj : records){
+       		System.out.println(obj);
+       	}
+    	
+    }    
     
     public static void callprocHbmCfg(Session session){
     	System.out.println("callprocHbmCfg-=-=-=-");
